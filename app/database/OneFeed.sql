@@ -1,0 +1,45 @@
+CREATE DATABASE onefeed;
+USE onefeed;
+
+CREATE TABLE Usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    dataNascimento DATE NOT NULL,
+    genero CHAR(1),
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Amizade (
+    usuario_id INT NOT NULL,
+    amigo_id INT NOT NULL,
+    dataAmizade DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (usuario_id, amigo_id),
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (amigo_id) REFERENCES Usuario(id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Post (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    conteudo TEXT NOT NULL,
+    dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    autor_id INT NOT NULL,
+    curtidas INT DEFAULT 0,
+    FOREIGN KEY (autor_id) REFERENCES Usuario(id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Comentario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    conteudo TEXT NOT NULL,
+    dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    post_id INT NOT NULL,
+    autor_id INT NOT NULL,
+    curtidas INT DEFAULT 0,
+    FOREIGN KEY (post_id) REFERENCES Post(id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (autor_id) REFERENCES Usuario(id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
