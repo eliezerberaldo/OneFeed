@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(240, 240, 240); 
+    color: #333;
+}
+
+.pagina-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.barra-lateral {
+    background-color: rgb(0, 167, 70);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: white; 
+    box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    gap: 15px; 
+}
+
+.barra-lateral img {
+    width: 150px; 
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    object-fit: cover; 
+}
+
+.nome-logo {
+    font-size: 2em; 
+    font-weight: 700; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.formulario-principal {
+    background-color: rgb(255, 255, 255); 
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+}
+
+.formulario-principal h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: rgb(59, 59, 59);
+    margin-bottom: 40px;
+}
+
+.grupo-formulario {
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.grupo-formulario label {
+    display: block;
+    margin-bottom: 10px; 
+    font-size: 1.1em;
+    color: rgb(109, 106, 106);
+    font-weight: 600; 
+    text-align: left;
+}
+
+.grupo-formulario input {
+    width: 100%;
+    padding: 12px 15px; 
+    border: 1px solid rgb(221, 221, 221); 
+    border-radius: 8px; 
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;  
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grupo-formulario input:focus {
+    outline: none;
+    border-color: rgb(0, 167, 70);
+    box-shadow: 0 0 8px rgba(0, 167, 70, 0.3);
+}
+
+.botao-enviar {
+    background-color: rgb(0, 167, 70);
+    color: rgb(255, 255, 255);
+    padding: 12px 30px;
+    border: none;    
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0, 167, 70, 0.3);
+    transition: all 0.3s ease;
+}
+
+.botao-enviar:hover {
+    background-color: rgb(2, 105, 45);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(2, 105, 45, 0.4);
+}
+
+.link-cadastro {
+    margin-top: 25px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.link-cadastro a {
+    color: rgb(0, 167, 70); 
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link-cadastro a:hover {
+    text-decoration: underline;
+}
+
+#formulario-login, 
+#formulario-cadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; 
+    max-width: 400px;
+}
