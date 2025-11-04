@@ -19,7 +19,7 @@
         <main class="formulario-principal">
             <h1>Cadastrar-se</h1>
             
-            <form id="formulario-cadastro">
+            <form id="formulario-cadastro" action="../processing/cadastro_processamento.php" method="POST">
                 
                 <div class="grupo-formulario">
                     <label for="email">E-mail:</label>
@@ -29,6 +29,22 @@
                 <div class="grupo-formulario">
                     <label for="usuario">Nome de Usuário:</label>
                     <input type="text" id="usuario" name="usuario" required placeholder="Seu nome de usuário">
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="data_nascimento">Data de Nascimento:</label>
+                    <input type="date" id="data_nascimento" name="data_nascimento" required>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="genero">Gênero:</label>
+                    <select id="genero" name="genero" required>
+                        <option value="" disabled selected>Selecione...</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                        <option value="O">Outro</option>
+                        <option value="N">Prefiro não informar</option>
+                    </select>
                 </div>
                 
                 <div class="grupo-formulario">

@@ -19,7 +19,7 @@
         <main class="formulario-principal">
             <h1>Entrar</h1>
             
-            <form id="formulario-login">
+            <form id="formulario-login" action="../processing/login_processamento.php" method="POST">
                 
                 <div class="grupo-formulario">
                     <label for="email">E-mail:</label>
