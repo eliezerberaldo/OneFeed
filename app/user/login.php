@@ -17,6 +17,11 @@
         </aside>
 
         <main class="formulario-principal">
+
+            <div id="trilho" class="trilho">
+                <div class="indicador"></div>
+            </div>
+
             <h1>Entrar</h1>
             
             <form id="formulario-login" action="../processing/login_processamento.php" method="POST">
