@@ -17,6 +17,11 @@
         </aside>
 
         <main class="formulario-principal">
+
+            <div id="trilho" class="trilho">
+                <div class="indicador"></div>
+            </div>
+
             <h1>Cadastrar-se</h1>
             
             <form id="formulario-cadastro" action="../processing/cadastro_processamento.php" method="POST">
@@ -66,5 +71,7 @@
 
         </main>
     </div>
+
+    <script src="../../public/js/app.js" defer></script>
 </body>
 </html>

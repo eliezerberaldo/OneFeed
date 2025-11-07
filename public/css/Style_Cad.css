@@ -13,7 +13,7 @@ body, html {
     display: flex;
     width: 90px;
     height: 40px;
-    background-color: grey;
+    background-color: black;
     border-radius: 50px 50px;
     margin-left: 90%;
     margin-top: -5%;
@@ -24,7 +24,7 @@ body, html {
 .trilho .indicador { 
     width: 35px;
     height: 35px;
-    background-color: black;
+    background-color: white;
     border-radius: 50%;
     margin: 2.5px;
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
@@ -32,6 +32,41 @@ body, html {
     position: absolute;
     left: 0;
     transition: 0.5s;
+}
+
+.trilho.dark {
+    background-color: rgb(195, 195, 195);
+}
+
+.trilho.dark .indicador {
+    left: 49px;
+    background-color: rgb(0, 0, 0);
+}
+
+main.dark {
+    background-color: #121212;
+    color: white;
+}
+
+main.dark h1 {
+    color: white;
+}
+
+main.dark input {
+    color: white;
+    border: 1px solid #555;
+}
+
+main.dark label {
+    color: white;
+}
+
+main.dark .botao-enviar {
+    background-color: #00c46a;
+}
+
+main.dark p {
+    color: white;
 }
 
 .pagina-container {
