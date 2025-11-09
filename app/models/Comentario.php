@@ -16,16 +16,27 @@ class Comentario {
         return $this->db->lastInsertId();
     }
 
-    public function getByPostId($post_id) {
-        $sql = "SELECT * FROM Comentario WHERE post_id = ? ORDER BY dataHora ASC";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([$post_id]);
-        return $stmt->fetchAll();
-    }
-
     public function delete($id) {
         $stmt = $this->db->prepare("DELETE FROM Comentario WHERE id = ?");
         return $stmt->execute([$id]);
+    }
+
+    public function getByPostId($post_id) {
+        $sql = "SELECT 
+                c.*, u.nome as autor_nome 
+            FROM 
+                Comentario c 
+            JOIN 
+                Usuario u ON c.autor_id = u.id 
+            WHERE 
+                c.post_id = ? 
+            ORDER BY 
+                c.dataHora ASC";
+            
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$post_id]);
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
     }
 }
 ?>

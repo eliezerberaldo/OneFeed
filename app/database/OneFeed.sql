@@ -43,3 +43,16 @@ CREATE TABLE Comentario (
     FOREIGN KEY (autor_id) REFERENCES Usuario(id)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE Curtida (
+    usuario_id INT NOT NULL,
+    post_id INT NOT NULL,
+    dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    
+    PRIMARY KEY (usuario_id, post_id),
+    
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (post_id) REFERENCES Post(id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
