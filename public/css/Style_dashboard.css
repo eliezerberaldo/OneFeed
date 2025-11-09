@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --verde-principal: #00a86b;
+    --verde-claro: #00c98b;
+    --cinza-fundo: #f4f6f5;
+    --branco: #ffffff;
+    --texto: #1c1c1c;
+    --cinza-claro: #e0e0e0;
+}
+
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background-color: var(--cinza-fundo);
+    color: var(--texto);
+    line-height: 1.5;
+}
+
+header {
+    background-color: var(--branco);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: var(--verde-principal);
+    font-weight: 700;
+}
+
+header a {
+    text-decoration: none;
+    color: var(--verde-principal);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+header a:hover {
+    color: var(--verde-claro);
+}
+
+main.container {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 0 15px;
+}
+
+.new-post-form {
+    background-color: var(--branco);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.07);
+}
+
+.new-post-form textarea {
+    width: 100%;
+    border: 1px solid var(--cinza-claro);
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 1rem;
+    resize: vertical;
+    margin-bottom: 12px;
+    transition: 0.3s;
+}
+
+.new-post-form textarea:focus {
+    border-color: var(--verde-principal);
+    outline: none;
+}
+
+.new-post-form button {
+    background-color: var(--verde-principal);
+    color: var(--branco);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    float: right;
+    transition: 0.3s;
+}
+
+.new-post-form button:hover {
+    background-color: var(--verde-claro);
+}
+
+#feed {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.post {
+    background-color: var(--branco);
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.post:hover {
+    transform: translateY(-2px);
+}
+
+.post-content {
+    padding: 20px;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.post-author {
+    font-weight: 600;
+    color: var(--verde-principal);
+}
+
+.post-body {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+}
+
+.post-actions {
+    display: flex;
+    gap: 20px;
+    border-top: 1px solid var(--cinza-claro);
+    padding-top: 10px;
+}
+
+.action-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.2s;
+    font-size: 0.9rem;
+}
+
+.action-button:hover {
+    color: var(--verde-principal);
+}
+
+.action-button.liked {
+    color: var(--verde-principal);
+}
+
+.comments-section {
+    background-color: #fafafa;
+    padding: 15px 20px;
+    border-top: 1px solid var(--cinza-claro);
+}
+
+.comment {
+    margin-bottom: 10px;
+}
+
+.comment-author {
+    color: var(--verde-principal);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-right: 5px;
+}
+
+.comment-body {
+    font-size: 0.95rem;
+}
+
+.comment-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.comment-form input[type="text"] {
+    flex: 1;
+    border: 1px solid var(--cinza-claro);
+    border-radius: 20px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.comment-form input[type="text"]:focus {
+    border-color: var(--verde-principal);
+    outline: none;
+}
+
+.comment-form button {
+    background-color: var(--verde-principal);
+    color: var(--branco);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.comment-form button:hover {
+    background-color: var(--verde-claro);
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
