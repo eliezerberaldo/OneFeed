@@ -20,20 +20,34 @@ class Usuario {
     }
 
     public function getById($id) {
-    $stmt = $this->db->prepare("SELECT * FROM Usuario WHERE id = ?");
-    $stmt->execute([$id]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
+        $stmt = $this->db->prepare("SELECT * FROM Usuario WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
-public function getByEmail($email) {
-    $stmt = $this->db->prepare("SELECT * FROM Usuario WHERE email = ?");
-    $stmt->execute([$email]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
+    public function getByEmail($email) {
+        $stmt = $this->db->prepare("SELECT * FROM Usuario WHERE email = ?");
+        $stmt->execute([$email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     public function delete($id) {
         $stmt = $this->db->prepare("DELETE FROM Usuario WHERE id = ?");
         return $stmt->execute([$id]);
+    }
+
+    public function searchByNome($termo, $usuario_logado_id) {
+        $termoLike = '%' . $termo . '%';
+        
+        $sql = "SELECT id, nome 
+                FROM Usuario 
+                WHERE nome LIKE ? 
+                  AND id != ? 
+                LIMIT 5";
+                
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$termoLike, $usuario_logado_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>

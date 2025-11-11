@@ -11,14 +11,21 @@ CREATE TABLE Usuario (
 );
 
 CREATE TABLE Amizade (
-    usuario_id INT NOT NULL,
-    amigo_id INT NOT NULL,
-    dataAmizade DATETIME DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (usuario_id, amigo_id),
-    FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (amigo_id) REFERENCES Usuario(id)
-        ON DELETE CASCADE ON UPDATE CASCADE
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    solicitante_id INT NOT NULL, 
+    receptor_id INT NOT NULL,    
+    
+    status ENUM('pendente', 'aceita', 'rejeitada') NOT NULL DEFAULT 'pendente',
+    
+    data_solicitacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_aceite DATETIME NULL,
+
+    FOREIGN KEY (solicitante_id) REFERENCES Usuario(id) ON DELETE CASCADE,
+    FOREIGN KEY (receptor_id) REFERENCES Usuario(id) ON DELETE CASCADE,
+    
+    UNIQUE KEY (solicitante_id, receptor_id), 
+    
+    INDEX (receptor_id, status) 
 );
 
 CREATE TABLE Post (
