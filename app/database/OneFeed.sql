@@ -56,3 +56,19 @@ CREATE TABLE Curtida (
     FOREIGN KEY (post_id) REFERENCES Post(id)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE Notificacao (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    autor_id INT NOT NULL,
+    post_id INT NOT NULL,
+    comentario_id INT NULL,
+    tipo ENUM('comentario', 'curtida') NOT NULL DEFAULT 'comentario',
+    lida BOOLEAN NOT NULL DEFAULT 0,
+    dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE,
+    FOREIGN KEY (autor_id) REFERENCES Usuario(id) ON DELETE CASCADE,
+    FOREIGN KEY (post_id) REFERENCES Post(id) ON DELETE CASCADE,
+    FOREIGN KEY (comentario_id) REFERENCES Comentario(id) ON DELETE SET NULL
+);

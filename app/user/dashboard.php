@@ -6,6 +6,7 @@ require_once '../models/Usuario.php';
 require_once '../models/Post.php';
 require_once '../models/Comentario.php';
 require_once '../models/Curtida.php';
+require_once '../models/Notificacao.php';
 
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: login.php");
@@ -18,6 +19,7 @@ $postDAO = new Post();
 $usuarioDAO = new Usuario();
 $comentarioDAO = new Comentario();
 $curtidaDAO = new Curtida();
+$notificacaoDAO = new Notificacao();
 
 $erro = "";
 
@@ -66,6 +68,9 @@ try {
 
 $todos_os_posts = $postDAO->getAll();
 $meus_post_ids_curtidos = $curtidaDAO->getLikesByUsuario($usuario_logado_id);
+
+$contagemNaoLidas = $notificacaoDAO->getContagemNaoLidas($usuario_logado_id);
+$notificacoes = $notificacaoDAO->getByUsuarioId($usuario_logado_id);
 ?>
 
 <!DOCTYPE html>
@@ -77,11 +82,50 @@ $meus_post_ids_curtidos = $curtidaDAO->getLikesByUsuario($usuario_logado_id);
     <link rel="stylesheet" href="../../public/css/Style_dashboard.css">
 </head>
 <body>
+    
     <header>
         <h1>OneFeed</h1>
-        <a href="logout.php">Sair</a>
-    </header>
+        
+        <nav class="header-nav">
+            <div class="notification-container">
+                
+                <button id="notification-bell" class="notification-bell">
+                    🔔
+                    <?php if ($contagemNaoLidas > 0): ?>
+                        <span id="notification-badge" class="notification-badge">
+                            <?php echo $contagemNaoLidas; ?>
+                        </span>
+                    <?php endif; ?>
+                </button>
 
+                <div id="notification-dropdown" class="notification-dropdown" style="display: none;">
+                    
+                    <div class="notification-header">
+                        <span>Notificações</span>
+                        <button id="clear-notifications-btn" class="clear-notifications-btn" title="Limpar todas">
+                            🗑️
+                        </button>
+                    </div>
+                    
+                    <div id="notification-list" class="notification-list">
+                        <?php if (empty($notificacoes)): ?>
+                            <div class="notification-item-empty">Nenhuma notificação nova.</div>
+                        <?php else: ?>
+                            <?php foreach ($notificacoes as $notif): ?>
+                                <a href="#post-<?php echo $notif['post_id']; ?>" 
+                                   class="notification-item <?php echo !$notif['lida'] ? 'unread' : ''; ?>">
+                                    
+                                    <strong><?php echo htmlspecialchars($notif['autor_nome']); ?></strong> comentou no seu post:
+                                    <span>"<?php echo htmlspecialchars($notif['post_resumo']); ?>..."</span>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+                </div> </div>
+
+            <a href="logout.php" class="logout-button">Sair</a>
+        </nav>
+    </header>
     <main class="container">
 
         <section class="new-post-form">
@@ -100,7 +144,8 @@ $meus_post_ids_curtidos = $curtidaDAO->getLikesByUsuario($usuario_logado_id);
             <?php else: ?>
                 <?php foreach ($todos_os_posts as $post): ?>
                     <?php $comentarios = $comentarioDAO->getByPostId($post['id']); ?>
-                    <article class="post">
+                    
+                    <article class="post" id="post-<?php echo $post['id']; ?>"> 
                         <div class="post-content">
                             <div class="post-header">
                                 <span class="post-author"><?php echo htmlspecialchars($post['autor_nome']); ?></span>
@@ -139,5 +184,74 @@ $meus_post_ids_curtidos = $curtidaDAO->getLikesByUsuario($usuario_logado_id);
             <?php endif; ?>
         </section>
     </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const bellButton = document.getElementById('notification-bell');
+        const dropdown = document.getElementById('notification-dropdown');
+        const badge = document.getElementById('notification-badge');
+        
+        const clearBtn = document.getElementById('clear-notifications-btn');
+        const notificationList = document.getElementById('notification-list');
+
+        bellButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            
+            const isHidden = dropdown.style.display === 'none';
+            dropdown.style.display = isHidden ? 'block' : 'none';
+
+            if (isHidden && badge) {
+                fetch('../processing/marcar_lidos.php', {
+                    method: 'POST'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        badge.style.display = 'none';
+                        dropdown.querySelectorAll('.notification-item.unread').forEach(item => {
+                            item.classList.remove('unread');
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao marcar notificações como lidas:', error);
+                });
+            }
+        });
+
+        clearBtn.addEventListener('click', function(event) {
+            event.stopPropagation();
+
+            if (!confirm('Tem certeza que deseja limpar TODAS as notificações? Esta ação não pode ser desfeita.')) {
+                return;
+            }
+
+            fetch('../processing/limpar_notificacoes.php', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    notificationList.innerHTML = '<div class="notification-item-empty">Nenhuma notificação nova.</div>';
+                    if (badge) {
+                        badge.style.display = 'none';
+                    }
+                } else {
+                    alert('Erro ao limpar as notificações.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao limpar notificações:', error);
+            });
+        });
+
+        document.addEventListener('click', function(event) {
+            if (dropdown.style.display === 'block' && !dropdown.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    });
+    </script>
+
 </body>
 </html>

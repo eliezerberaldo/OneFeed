@@ -13,7 +13,25 @@ class Comentario {
         $sql = "INSERT INTO Comentario (conteudo, post_id, autor_id) VALUES (?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$conteudo, $post_id, $autor_id]);
-        return $this->db->lastInsertId();
+        
+        $comentario_id = $this->db->lastInsertId();
+
+        try {
+            $postDAO = new Post(); 
+            $post = $postDAO->getById($post_id);
+            
+            if ($post) {
+                $post_autor_id = $post['autor_id'];
+                
+                $notificacaoDAO = new Notificacao();
+                $notificacaoDAO->create($post_autor_id, $autor_id, $post_id, $comentario_id);
+            }
+
+        } catch (Exception $e) {
+            error_log("Erro ao criar notificação: " . $e->getMessage());
+        }
+        
+        return $comentario_id;
     }
 
     public function delete($id) {

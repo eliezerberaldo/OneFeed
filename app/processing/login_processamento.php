@@ -16,11 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuarioObj = new Usuario();
     $usuario = $usuarioObj->getByEmail($email);
     
-    if ($usuario && password_verify($senha, $usuario->senha)) {
+    if ($usuario && password_verify($senha, $usuario['senha'])) {
         session_regenerate_id(true);
         
-        $_SESSION['usuario_id'] = $usuario->id;
-        $_SESSION['usuario_nome'] = $usuario->nome; 
+        $_SESSION['usuario_id'] = $usuario['id'];
+        $_SESSION['usuario_nome'] = $usuario['nome']; 
 
         header("Location: ../user/dashboard.php");
         exit();
