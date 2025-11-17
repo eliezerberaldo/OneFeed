@@ -156,6 +156,7 @@ main.container {
     gap: 5px;
     transition: 0.2s;
     font-size: 0.9rem;
+    text-decoration: none;
 }
 
 .action-button:hover {
@@ -528,4 +529,18 @@ main.container {
 
 .remove-friend-btn:hover {
     color: red;
+}
+
+.header-logo-name {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+}
+
+.welcome-message {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--texto);
+    position: relative;
+    top: -2px; 
 }

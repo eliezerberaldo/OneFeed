@@ -9,8 +9,8 @@ if (!isset($_SESSION['usuario_id']) || !isset($_GET['termo'])) {
     exit();
 }
 
-require_once '../database/Database.php';
-require_once '../models/Usuario.php';
+require_once __DIR__ . '../database/Database.php';
+require_once __DIR__ . '../models/Usuario.php';
 
 $usuario_logado_id = $_SESSION['usuario_id'];
 $termo = trim($_GET['termo']);

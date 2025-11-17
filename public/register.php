@@ -4,27 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar-se - OneFeed</title>
-    <link rel="stylesheet" href="../../public/css/Style_Cad.css">
-    <link rel="shortcut icon" href="../../public/img/favicon.ico">
+    <link rel="stylesheet" href="css/Style_Cad.css">
+    <link rel="shortcut icon" href="img/favicon.ico">
 </head>
 <body>
 
     <div class="pagina-container">
         
         <aside class="barra-lateral">
-            <img src="../../public/img/Logo_OnF.png" alt="Logo OneFeed">
+            <img src="img/Logo_OnF.png" alt="Logo OneFeed">
             <div class="nome-logo">OneFeed</div>
         </aside>
 
         <main class="formulario-principal">
-
-            <div id="trilho" class="trilho">
-                <div class="indicador"></div>
-            </div>
-
             <h1>Cadastrar-se</h1>
             
-            <form id="formulario-cadastro" action="../processing/cadastro_processamento.php" method="POST">
+            <form id="formulario-cadastro" action="../app/processing/cadastro_processamento.php" method="POST">
                 
                 <div class="grupo-formulario">
                     <label for="email">E-mail:</label>
@@ -71,7 +66,5 @@
 
         </main>
     </div>
-
-    <script src="../../public/js/app.js" defer></script>
 </body>
 </html>

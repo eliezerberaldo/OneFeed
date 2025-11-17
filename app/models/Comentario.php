@@ -1,5 +1,8 @@
 <?php
-require_once '../database/Database.php';
+
+require_once __DIR__ . '/../database/Database.php';
+require_once __DIR__ . '/Post.php';
+require_once __DIR__ . '/Notificacao.php';
 
 class Comentario {
     

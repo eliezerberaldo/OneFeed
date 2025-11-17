@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once '../models/Usuario.php';
+require_once __DIR__ . '/../models/Usuario.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -14,20 +14,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirma_senha = $_POST['confirm-password'];
 
     if ($senha !== $confirma_senha) {
-        header("Location: ../user/register.php?erro=senhas_nao_conferem");
+        header("Location: ../../public/register.php?erro=senhas_nao_conferem");
         exit();
     }
     
     if (empty($data_nascimento) || empty($genero)) {
-         header("Location: ../user/register.php?erro=campos_obrigatorios");
-         exit();
+        header("Location: ../../public/register.php?erro=campos_obrigatorios");
+        exit();
     }
     
     $usuarioObj = new Usuario();
     $usuario_existente = $usuarioObj->getByEmail($email);
 
     if ($usuario_existente) {
-        header("Location: ../user/register.php?erro=email_ja_cadastrado");
+        header("Location: ../../public/register.php?erro=email_ja_cadastrado");
         exit();
     }
 
@@ -39,21 +39,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($novo_usuario_id) {
             $_SESSION['usuario_id'] = $novo_usuario_id;
             $_SESSION['usuario_nome'] = $nome_usuario; 
+            $_SESSION['genero'] = $usuario['genero']; 
 
-            header("Location: ../user/dashboard.php");
+            header("Location: ../../public/dashboard.php");
             exit();
             
         } else {
-            header("Location: ../user/register.php?erro=falha_cadastro");
+            header("Location: ../../public/register.php?erro=falha_cadastro");
             exit();
         }
     } catch (PDOException $e) {
-        header("Location: ../user/register.php?erro=db_error");
+        header("Location: ../../public/register.php?erro=db_error");
         exit();
     }
 
 } else {
-    header("Location: ../user/register.php");
+    header("Location: ../../public/register.php");
     exit();
 }
 ?>
