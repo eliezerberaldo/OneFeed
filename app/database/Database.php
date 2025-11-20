@@ -8,7 +8,7 @@ class Database {
     private $host = 'localhost';
     private $db   = 'onefeed';
     private $user = 'root';
-    private $pass = '';
+    private $pass = 'Co123456789';
     private $charset = 'utf8mb4';
 
     private function __construct() {

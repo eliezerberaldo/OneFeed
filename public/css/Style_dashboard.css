@@ -55,6 +55,251 @@ main.container {
     padding: 0 15px;
 }
 
+.trilho { 
+    width: 90px;
+    height: 40px;
+    background-color: black;
+    border-radius: 50px;
+    position: fixed; 
+    top: 20px;      
+    right: 170px;     
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px; 
+    transition: background-color 0.5s ease;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.trilho .indicador { 
+    width: 33px;
+    height: 33px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    transition: left 0.5s ease, background-color 0.5s ease;
+}
+
+.trilho.dark {
+    background-color: rgb(195, 195, 195);
+}
+
+.trilho.dark .indicador {
+    left: 50px;
+    width: 38px;
+    height: 38px;
+    background-color: rgb(0, 0, 0);
+}
+
+body.dark header {
+    background-color: #181818;
+    color: white;
+    border-bottom: 1px solid #333;
+}
+
+body.dark .header-logo-name .welcome-message {
+    color: white;
+}
+
+body.dark {
+    background-color: #121212;
+    color: white;
+    transition: background-color 0.5s ease;
+}
+
+main.dark h1 {
+    color: white;
+}
+
+main.dark input {
+    
+    border: 1px solid #555;
+}
+
+main.dark label {
+    color: white;
+}
+
+main.dark .botao-enviar {
+    background-color: #00c46a;
+}
+
+body.dark input {
+    
+    border: 1px solid #555;
+}
+
+body.dark .notification-dropdown {
+    background-color: #1f1f1f;
+    border: 1px solid #333;
+    color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+body.dark .notification-item {
+    background-color: #262626;
+    color: #e6e6e6;
+    border-bottom: 1px solid #333;
+}
+
+body.dark .notification-item:hover {
+    background-color: #333;
+}
+
+body.dark .notification-item.unread {
+    background-color: #303030;
+    font-weight: bold;
+}
+
+body.dark .notification-header {
+    background-color: #181818;
+    color: #fff;
+    border-bottom: 1px solid #333;
+}
+
+body.dark .clear-notifications-btn {
+    background-color: transparent;
+    color: white;
+}
+
+body.dark .clear-notifications-btn:hover {
+    color: #ff6b6b;
+}
+
+body.dark .friend-request-item {
+    background-color: #262626;
+    border-bottom: 1px solid #333;
+    color: white;
+}
+
+body.dark .friend-request-actions button {
+    background-color: #3a3a3a;
+    color: white;
+    border: 1px solid #555;
+}
+
+body.dark .friend-request-actions button:hover {
+    background-color: #505050;
+}
+
+body.dark .new-post-form {
+    background-color: #1d1d1d;
+    border: 1px solid #2f2f2f;
+}
+
+body.dark .new-post-form textarea {
+    background-color: #2a2a2a;
+    color: white;
+    border: 1px solid #444;
+}
+
+body.dark textarea::placeholder {
+    color: white;
+}
+
+body.dark .new-post-form button {
+    background-color: #00c46a;
+    color: white;
+}
+
+body.dark .post {
+    background-color: #1d1d1d;
+    border: 1px solid #2f2f2f;
+    color: white;
+}
+
+body.dark .post-header span {
+    color: #ddd;
+}
+
+body.dark .post-body p {
+    color: #e6e6e6;
+}
+
+body.dark .post-actions .action-button {
+    color: #ccc;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+}
+
+body.dark .post-actions .action-button.liked {
+    background-color: #007E47;
+    border-color: #005c35;
+}
+
+body.dark .comments-section {
+    background-color: #1a1a1a;
+    border-top: 1px solid #333;
+}
+
+body.dark .comment {
+    background-color: #232323;
+    border-bottom: 1px solid #333;
+    color: white;
+}
+
+body.dark .comment-author {
+    color: #8fdc9e;
+}
+
+body.dark .comment-form input {
+    background-color: #2a2a2a;
+    color: white;
+    border: 1px solid #444;
+}
+
+body.dark .comment-form button {
+    background-color: #00c46a;
+    color: white;
+}
+
+body.dark #friend-search-input {
+    background-color: #2a2a2a;
+    color: white;
+    border: 1px solid #444;
+}
+
+body.dark #friend-search-input::placeholder {
+    color: white;
+}
+
+body.dark .friends-sidebar {
+    background-color: #1d1d1d;
+    border-color: #333;
+    color: white;
+}
+
+body.dark .friend-item {
+    background-color: #262626;
+    color: white;
+    border-bottom: 1px solid #444;
+}
+
+body.dark .friend-list-empty {
+    color: #ccc;
+}
+
+body.dark .remove-friend-btn {
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+}
+
+.feed-empty {
+    text-align: center;
+    color: #777;
+}
+
+body.dark .feed-empty {
+    color: white;
+}
+
 .new-post-form {
     background-color: var(--branco);
     border-radius: 12px;
@@ -453,6 +698,10 @@ main.container {
     color: #777;
     font-size: 0.9rem;
     padding: 10px 0;
+}
+
+body.dark .friend-list-empty {
+    color: white;
 }
 
 .header-nav {

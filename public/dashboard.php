@@ -100,6 +100,10 @@ $meus_amigos = $amizadeDAO->getAmigos($usuario_logado_id);
 </div>
         
         <nav class="header-nav">
+
+        <div id="trilho" class="trilho">
+                <div class="indicador"></div>
+            </div>
             
             <div class="notification-container">
                 <button id="friend-request-bell" class="notification-bell">
@@ -183,7 +187,7 @@ $meus_amigos = $amizadeDAO->getAmigos($usuario_logado_id);
 
             <section id="feed">
                 <?php if (empty($todos_os_posts)): ?>
-                    <p style="text-align: center; color: #777;">Ainda não há publicações. Que tal começar o OneFeed?</p>
+                    <p class="feed-empty" style="text-align: center;">Ainda não há publicações. Que tal começar o OneFeed?</p>
                 <?php else: ?>
                     <?php foreach ($todos_os_posts as $post): ?>
                         <?php $comentarios = $comentarioDAO->getByPostId($post['id']); ?>
