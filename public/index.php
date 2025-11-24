@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_SESSION['usuario_id'])) {
+    header("Location: dashboard.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -47,5 +55,6 @@
     </div>
 
     <script src="js/dashboard.js" defer></script>
+    <script src="js/darkmode.js"></script>
 </body>
 </html>

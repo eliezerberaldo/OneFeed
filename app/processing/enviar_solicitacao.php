@@ -9,8 +9,8 @@ if (!isset($_SESSION['usuario_id']) || !isset($_POST['receptor_id'])) {
     exit();
 }
 
-require_once __DIR__ . '../database/Database.php';
-require_once __DIR__ . '../models/Amizade.php';
+require_once __DIR__ . '/../database/Database.php';
+require_once __DIR__ . '/../models/Amizade.php';
 
 $solicitante_id = $_SESSION['usuario_id'];
 $receptor_id = (int)$_POST['receptor_id'];

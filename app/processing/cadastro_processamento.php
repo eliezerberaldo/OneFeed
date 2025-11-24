@@ -19,8 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     if (empty($data_nascimento) || empty($genero)) {
-        header("Location: ../../public/register.php?erro=campos_obrigatorios");
-        exit();
+         header("Location: ../../public/register.php?erro=campos_obrigatorios");
+         exit();
     }
     
     $usuarioObj = new Usuario();
@@ -39,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($novo_usuario_id) {
             $_SESSION['usuario_id'] = $novo_usuario_id;
             $_SESSION['usuario_nome'] = $nome_usuario; 
-            $_SESSION['genero'] = $usuario['genero']; 
 
             header("Location: ../../public/dashboard.php");
             exit();

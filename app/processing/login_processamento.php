@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha = $_POST['password'];
 
     if (empty($email) || empty($senha)) {
-        header("Location: ../../public/login.php?erro=campos_vazios");
+        header("Location: ../../public/index.php?erro=campos_vazios");
         exit();
     }
 
@@ -28,12 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
 
     } else {
-        header("Location: ../../public/login.php?erro=credenciais_invalidas");
+        header("Location: ../../public/index.php?erro=credenciais_invalidas");
         exit();
     }
 
 } else {
-    header("Location: ../../public/login.php");
+    header("Location: ../../public/index.php");
     exit();
 }
 ?>

@@ -10,7 +10,7 @@ require_once '../app/models/Notificacao.php';
 require_once '../app/models/Amizade.php';
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -259,5 +259,6 @@ $meus_amigos = $amizadeDAO->getAmigos($usuario_logado_id);
     </main>
 
     <script src="js/dashboard.js"></script>
+    <script src="js/darkmode.js"></script>
 </body>
 </html>

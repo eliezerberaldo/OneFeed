@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_SESSION['usuario_id'])) {
+    header("Location: dashboard.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -66,12 +74,13 @@
             </form>
 
             <p class="link-cadastro">
-                Já possui uma conta? <a href="login.php">Entre</a>
+                Já possui uma conta? <a href="index.php">Entre</a>
             </p>
 
         </main>
     </div>
 
     <script src="js/dashboard.js" defer></script>
+    <script src="js/darkmode.js"></script>
 </body>
 </html>
