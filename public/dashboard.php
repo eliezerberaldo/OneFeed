@@ -76,6 +76,7 @@ $notificacoes = $notificacaoDAO->getByUsuarioId($usuario_logado_id);
 $solicitacoes_pendentes = $amizadeDAO->getSolicitacoesPendentes($usuario_logado_id);
 $contagem_solicitacoes = count($solicitacoes_pendentes);
 $meus_amigos = $amizadeDAO->getAmigos($usuario_logado_id);
+$meus_amigos_ids = array_column($meus_amigos, 'amigo_id');
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +95,7 @@ $meus_amigos = $amizadeDAO->getAmigos($usuario_logado_id);
     <h1>OneFeed</h1>
     <span class="welcome-message">
         <strong>
-            Bem <?php echo ($_SESSION['genero'] === 'M' ? 'vindo' : 'vinda'); ?>, <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>!
+            Olá, <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>!
         </strong>
     </span>
 </div>
@@ -192,7 +193,10 @@ $meus_amigos = $amizadeDAO->getAmigos($usuario_logado_id);
                     <?php foreach ($todos_os_posts as $post): ?>
                         <?php $comentarios = $comentarioDAO->getByPostId($post['id']); ?>
                         
-                        <article class="post" id="post-<?php echo $post['id']; ?>"> 
+                        <?php 
+                            $isFriendPost = in_array($post['autor_id'], $meus_amigos_ids);
+                        ?>
+                        <article class="post <?php echo $isFriendPost ? 'friend-post' : ''; ?>" id="post-<?php echo $post['id']; ?>">
                             <div class="post-content">
                                 <div class="post-header">
                                     <span class="post-author"><?php echo htmlspecialchars($post['autor_nome']); ?></span>

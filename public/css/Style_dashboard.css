@@ -793,3 +793,10 @@ body.dark .friend-list-empty {
     position: relative;
     top: -2px; 
 }
+
+.post.friend-post .post-author::after {
+    content: '👥';
+    margin-left: 8px;
+    font-size: 0.8rem;
+    display: inline-block;
+}

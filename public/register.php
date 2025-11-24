@@ -55,8 +55,6 @@ if (isset($_SESSION['usuario_id'])) {
                         <option value="" disabled selected>Selecione...</option>
                         <option value="M">Masculino</option>
                         <option value="F">Feminino</option>
-                        <option value="O">Outro</option>
-                        <option value="N">Prefiro não informar</option>
                     </select>
                 </div>
                 
